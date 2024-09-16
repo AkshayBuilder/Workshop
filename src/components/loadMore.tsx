@@ -6,7 +6,7 @@ import { Spinner } from "./ui/spinner";
 import { fetchMovies } from "@/actions/fetch-movies";
 import Link from 'next/link';
 import { Photo } from './photo';
-import { RootState } from "@reduxjs/toolkit/query"; // Correct path to the store
+import { RootState } from "@/app/redux/store"; // Correct path to the store
 import { SearchComponent } from "@/components/search";
 import { useSelector, useDispatch, Provider } from 'react-redux';
 import { store } from "@/app/redux/store";
@@ -17,9 +17,7 @@ export function LoadMore({ initialMovies }: { initialMovies: Movie[] | null }) {
   const [loading, setLoading] = useState(true); // Loading state to manage spinner
   const searchTerm = useSelector((state: RootState) => state.search.searchTerm); // Get the search term from Redux
 
-  const { ref, inView } = useInView({
-    threshold: 0,
-  });
+  const { ref, inView } = useInView();
 
   // Function to load more movies when scrolled into view
   async function loadMoreMovies() {

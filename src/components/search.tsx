@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '@reduxjs/toolkit/query';// Adjust the path to your store
+import { RootState } from '@/app/redux/store';// Adjust the path to your store
 import { setSearchTerm } from '@/app/redux/searchSlice'; // Adjust the path to your slice
 
 export function SearchComponent() {
