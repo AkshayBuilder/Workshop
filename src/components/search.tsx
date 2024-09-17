@@ -13,11 +13,11 @@ export function SearchComponent() {
   const placeholderTitle = "Romantic Comedy";
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(setSearchTerm(e.target.value)); // Directly update Redux state
+    dispatch(setSearchTerm(e.target.value)); // Directly update Redux state.Comments by Akshay G Nambiar
   };
 
   const handleSearchClick = () => {
-    setSearchEnabled(!searchEnabled); // Toggle search input field visibility
+    setSearchEnabled(!searchEnabled); // Logic for changing visibility of input box visibility
   };
 
   return (
@@ -29,7 +29,7 @@ export function SearchComponent() {
           src="Back.png"
           alt="Back Icon"
         />
-        {/* Scrolling Text */}
+        
         {!searchEnabled && (
           <div className="ml-2overflow-hidden whitespace-nowrap">
             <div className="text-white">{placeholderTitle}</div>

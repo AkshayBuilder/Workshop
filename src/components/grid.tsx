@@ -50,7 +50,7 @@ function MovieLink({
         title={movie.name}
         priority={priority}
       />
-      {/* Name from JSON data (book.name) */}
+    
       <span className="absolute bottom-0 left-0  p-2 text-sm font-semibold">
         
       </span>

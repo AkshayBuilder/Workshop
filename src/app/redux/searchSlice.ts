@@ -18,8 +18,8 @@ export const searchSlice = createSlice({
   },
 });
 
-// Export actions
+// actions
 export const { setSearchTerm } = searchSlice.actions;
 
-// Export reducer
+//  reducer
 export default searchSlice.reducer;

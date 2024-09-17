@@ -1,19 +1,9 @@
 
 import { Suspense } from 'react';
-import { BooksGrid } from '@/components/grid';
-import axios from 'axios';
-import type { InferGetServerSidePropsType, GetServerSideProps } from 'next'
-import Movie from '@/lib/movie';
 import { LoadMore } from '@/components/loadMore';
 import { fetchMovies } from '@/actions/fetch-movies';
 import Loading from './loading';
 
-//import {
- // estimateTotalBooks,
- // fetchBooksWithPagination,
- // ITEMS_PER_PAGE,
-//} from '@/lib/db/queries';
-//import { parseSearchParams } from '@/lib/url-state';
 
 export default async function Page()
  {

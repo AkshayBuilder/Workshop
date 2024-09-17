@@ -6,7 +6,7 @@ import { Spinner } from "./ui/spinner";
 import { fetchMovies } from "@/actions/fetch-movies";
 import Link from "next/link";
 import { Photo } from "./photo";
-import { RootState } from "@/app/redux/store"; // Correct path to the store
+import { RootState } from "@/app/redux/store"; 
 import { SearchComponent } from "@/components/search";
 import { useSelector, Provider } from "react-redux";
 import { store } from "@/app/redux/store";
@@ -14,10 +14,9 @@ import { store } from "@/app/redux/store";
 export function LoadMore({ initialMovies }: { initialMovies: Movie[] | null }) {
   const [movies, setMovies] = useState<Movie[] | null>(initialMovies || []);
   const [pagesLoaded, setPagesLoaded] = useState("page3");
-  const [loading, setLoading] = useState(true); // Loading state to manage spinner
   const searchTerm = useSelector(
     (state: RootState) => state.search.searchTerm
-  ); // Get the search term from Redux
+  ); //  search term from Redux store
 
   const { ref, inView } = useInView();
 
@@ -50,7 +49,7 @@ export function LoadMore({ initialMovies }: { initialMovies: Movie[] | null }) {
     <Provider store={store}>
       <div className="flex flex-col h-full">
         {/* SearchComponent for searching movies */}
-        <div className="container mx-auto p-4 -ml-4"> {/* Center and align content */}
+        <div className="container mx-auto p-4 -ml-4"> 
           <SearchComponent />
         </div>
 
@@ -69,14 +68,14 @@ export function LoadMore({ initialMovies }: { initialMovies: Movie[] | null }) {
                   key={Math.random()}
                   priority={index < 10}
                   movie={film}
-                  ref={isLastElement ? ref : null} // Assign ref only to the last element
+                  ref={isLastElement ? ref : null} // ref 
                 />
               );
             })
           )}
         </div>
 
-        {/* Infinite scroll spinner */}
+        {/* spinner  called here for pagination*/}
         <div ref={ref}>
           <Spinner />
         </div>

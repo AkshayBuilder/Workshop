@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import searchReducer from './searchSlice'; // Adjust the path to your slice
+import searchReducer from './searchSlice'; // the path to  slice
 
 export const store = configureStore({
   reducer: {
-    search: searchReducer, // Add your search slice here
+    search: searchReducer, // A search slice 
   },
 });
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
+// While importing RootStack please be careful on types(My experience)
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
