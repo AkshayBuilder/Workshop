@@ -28,42 +28,7 @@ export default function RootLayout({
         )}
       > 
         <div className="group flex w-full">
-          <div className="hidden md:block w-[300px] h-screen sticky top-0 p-8">
-            <div className="h-full rounded-lg bg-white dark:bg-gray-800 shadow-sm overflow-hidden">
-              <div className="h-full overflow-y-auto p-4">
-                <Suspense fallback={null}>
-                  <div className='ml-1 mt-3'>
-                  <img
-                  src="diagnalspare.jfif" 
-                  alt="Description of the image"  
-                   width="800"  
-                   height="1000"  
-                  />
-                  <img
-                  src="diagnalspare.jfif" 
-                  alt="Description of the image"  
-                   width="800"  
-                   height="1000"  
-                  /><img
-                  src="diagnalspare.jfif" 
-                  alt="Description of the image"  
-                   width="800"  
-                   height="1000"  
-                  />
-                  <img
-                  src="diagnalspare.jfif" 
-                  alt="Description of the image"  
-                   width="800"  
-                   height="1000"  
-                  />
-                  </div>
-
-
-                  
-                </Suspense>
-              </div>
-            </div>
-          </div>
+          
           <div className="flex-1 flex flex-col min-h-screen">
             <div className="flex-1 flex flex-col p-1">{children}</div>
           </div>
