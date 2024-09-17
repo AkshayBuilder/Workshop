@@ -4,18 +4,20 @@ import { useInView } from "react-intersection-observer";
 import Movie from "@/lib/movie";
 import { Spinner } from "./ui/spinner";
 import { fetchMovies } from "@/actions/fetch-movies";
-import Link from 'next/link';
-import { Photo } from './photo';
+import Link from "next/link";
+import { Photo } from "./photo";
 import { RootState } from "@/app/redux/store"; // Correct path to the store
 import { SearchComponent } from "@/components/search";
-import { useSelector, useDispatch, Provider } from 'react-redux';
+import { useSelector, Provider } from "react-redux";
 import { store } from "@/app/redux/store";
 
 export function LoadMore({ initialMovies }: { initialMovies: Movie[] | null }) {
   const [movies, setMovies] = useState<Movie[] | null>(initialMovies || []);
   const [pagesLoaded, setPagesLoaded] = useState("page3");
   const [loading, setLoading] = useState(true); // Loading state to manage spinner
-  const searchTerm = useSelector((state: RootState) => state.search.searchTerm); // Get the search term from Redux
+  const searchTerm = useSelector(
+    (state: RootState) => state.search.searchTerm
+  ); // Get the search term from Redux
 
   const { ref, inView } = useInView();
 
@@ -46,39 +48,39 @@ export function LoadMore({ initialMovies }: { initialMovies: Movie[] | null }) {
 
   return (
     <Provider store={store}>
-    <div className="flex flex-col h-full">
-      {/* SearchComponent for searching movies */}
-      <div className="p-4 rounded-lg shadow-lg">
-        <SearchComponent />
-      </div>
+      <div className="flex flex-col h-full">
+        {/* SearchComponent for searching movies */}
+        <div className="container mx-auto p-4 -ml-4"> {/* Center and align content */}
+          <SearchComponent />
+        </div>
 
-      {/* Movies grid */}
-      <div className="grid grid-cols-3 gap-4 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7">
-        {!filteredMovies?.length ? (
-          <p className="text-center text-muted-foreground col-span-full">
-            No movies found.
-          </p>
-        ) : (
-          filteredMovies.map((film, index) => {
-            const isLastElement = index === filteredMovies.length - 1;
+        {/* Movies grid */}
+        <div className="container mx-auto grid grid-cols-3 gap-4 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 mt-3">
+          {!filteredMovies?.length ? (
+            <p className="text-center text-muted-foreground col-span-full">
+              No movies found.
+            </p>
+          ) : (
+            filteredMovies.map((film, index) => {
+              const isLastElement = index === filteredMovies.length - 1;
 
-            return (
-              <MovieLink
-                key={Math.random()}
-                priority={index < 10}
-                movie={film}
-                ref={isLastElement ? ref : null} // Assign ref only to the last element
-              />
-            );
-          })
-        )}
-      </div>
+              return (
+                <MovieLink
+                  key={Math.random()}
+                  priority={index < 10}
+                  movie={film}
+                  ref={isLastElement ? ref : null} // Assign ref only to the last element
+                />
+              );
+            })
+          )}
+        </div>
 
-      {/* Infinite scroll spinner */}
-      <div ref={ref}>
-        <Spinner />
+        {/* Infinite scroll spinner */}
+        <div ref={ref}>
+          <Spinner />
+        </div>
       </div>
-    </div>
     </Provider>
   );
 }
@@ -107,8 +109,9 @@ const MovieLink = ({
         />
         <span className="absolute bottom-0 left-0 p-2 text-sm font-semibold"></span>
       </Link>
-      {movie.name}
+       <div className="p-4">
+      {movie.name.length > 12 ? `${movie.name.slice(0,12)}...` : movie.name}
+      </div>
     </div>
-    
   );
 };

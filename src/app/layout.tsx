@@ -7,6 +7,7 @@ import { Suspense } from 'react';
 import { Provider } from 'react-redux';
 import { store } from './redux/store'; // Adjust the path based on your project structure
 import { ReactNode } from 'react';
+import Image from 'next/image';
 
  const metadata: Metadata = {
   title: 'Book Inventory — Next.js App Router',
@@ -31,7 +32,34 @@ export default function RootLayout({
             <div className="h-full rounded-lg bg-white dark:bg-gray-800 shadow-sm overflow-hidden">
               <div className="h-full overflow-y-auto p-4">
                 <Suspense fallback={null}>
-                  {/* Add content or sidebar here if needed */}
+                  <div className='ml-1 mt-3'>
+                  <img
+                  src="diagnalspare.jfif" 
+                  alt="Description of the image"  
+                   width="800"  
+                   height="1000"  
+                  />
+                  <img
+                  src="diagnalspare.jfif" 
+                  alt="Description of the image"  
+                   width="800"  
+                   height="1000"  
+                  /><img
+                  src="diagnalspare.jfif" 
+                  alt="Description of the image"  
+                   width="800"  
+                   height="1000"  
+                  />
+                  <img
+                  src="diagnalspare.jfif" 
+                  alt="Description of the image"  
+                   width="800"  
+                   height="1000"  
+                  />
+                  </div>
+
+
+                  
                 </Suspense>
               </div>
             </div>

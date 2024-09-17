@@ -56,7 +56,7 @@ function MovieLink({
       </span>
     
     </Link>
-    {movie.name}
+    {movie.name.length > 12 ? `${movie.name.slice(0,12)}...` : movie.name}
     </div>
   );
 }

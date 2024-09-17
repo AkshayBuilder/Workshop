@@ -1,42 +1,60 @@
 "use client";
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '@/app/redux/store';// Adjust the path to your store
-import { setSearchTerm } from '@/app/redux/searchSlice'; // Adjust the path to your slice
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/app/redux/store"; // Adjust the path to your store
+import { setSearchTerm } from "@/app/redux/searchSlice"; // Adjust the path to your slice
+import backButton from "../assets/Back.png";
+import searchIcon from "../assets/search.png"; // Assuming this asset exists
 
 export function SearchComponent() {
   const dispatch = useDispatch();
   const searchTerm = useSelector((state: RootState) => state.search.searchTerm);
-  const [input, setInput] = useState(searchTerm);
+  const [searchEnabled, setSearchEnabled] = useState(false);
+  const placeholderTitle = "Romantic Comedy";
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInput(e.target.value);
+    dispatch(setSearchTerm(e.target.value)); // Directly update Redux state
   };
 
-  const handleSearch = () => {
-    dispatch(setSearchTerm(input)); // Dispatch search term to Redux store
+  const handleSearchClick = () => {
+    setSearchEnabled(!searchEnabled); // Toggle search input field visibility
   };
 
   return (
-    <div
-      className="relative flex items-center justify-between w-full h-15 p-2 bg-cover bg-center rounded-full shadow-lg"
-      style={{ background: 'linear-gradient(to right, blue, black)' }} // Gradient background from blue to black
-    >
-      <button className="p-2 bg-gray-500 text-white rounded-full">
-        ←
-      </button>
+    <div className="fixed w-full top-0 flex items-center justify-between h-12 bg-black bg-opacity-100 text-white shadow-lg z-50 px-4">
+      {/* Back Button */}
+      <div className="flex items-center space-x-2 ">
+        <img
+          className="w-6 h-6 cursor-pointer"
+          src="Back.png"
+          alt="Back Icon"
+        />
+        {/* Scrolling Text */}
+        {!searchEnabled && (
+          <div className="ml-2overflow-hidden whitespace-nowrap">
+            <div className="text-white">{placeholderTitle}</div>
+          </div>
+        )}
+      </div>
 
-      <input
-        type="text"
-        placeholder="Search for movies..."
-        className="w-full max-w-lg p-1 bg-gray-200 rounded-l-lg focus:outline-none"
-        value={input} // Controlled input
-        onChange={handleInputChange} // Update input value
+      {/* Search Input */}
+      {searchEnabled && (
+        <input
+          className="border-none rounded-full h-8 w-[50%] sm:w-[40%] md:w-[30%] lg:w-[25%] xl:w-[20%] p-2 text-black"
+          onChange={handleInputChange}
+          type="text"
+          value={searchTerm}
+          placeholder="Search for movies..."
+        />
+      )}
+
+      {/* Search Icon */}
+      <img
+        className="w-6 h-6 cursor-pointer mr-3"
+        onClick={handleSearchClick}
+        src="search.png"
+        alt="Search Icon"
       />
-
-      <button onClick={handleSearch} className="ml-2 p-2 bg-blue-600 text-white rounded-lg">
-        Search
-      </button>
     </div>
   );
 }
